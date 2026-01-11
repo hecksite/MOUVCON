@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>MOUVEMENT & CONSULT | Visionary Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              cream: '#fcfbf9',
+              brand: {
+                black: '#171717',
+                dark: '#262626',
+                accent: '#171717',
+                muted: '#737373',
+                light: '#a3a3a3',
+                border: 'rgba(0, 0, 0, 0.1)'
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      html.lenis, html.lenis body {
+        height: auto;
+      }
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+      .lenis.lenis-smooth iframe {
+        pointer-events: none;
+      }
+      body {
+        background-color: #fcfbf9;
+        color: #171717;
+        overflow-x: hidden;
+        width: 100%;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        touch-action: pan-y;
+      }
+      /* iOS Safari safe areas */
+      @supports (padding: max(0px)) {
+        body {
+          padding-left: max(0px, env(safe-area-inset-left));
+          padding-right: max(0px, env(safe-area-inset-right));
+        }
+      }
+      .noise-texture {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+        opacity: 0.02;
+        pointer-events: none;
+        z-index: 100;
+      }
+      /* Hide scrollbar */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      
+      /* Hero letter animation */
+      .char-wrapper {
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: bottom;
+        white-space: nowrap;
+      }
+      .letter { 
+        display: inline-block;
+        white-space: nowrap;
+      }
+      
+      /* Reveal animations */
+      .reveal-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .reveal-up.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Card zoom effect */
+      .card-zoom {
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .card-zoom:hover {
+        transform: scale(1.02);
+      }
+      
+      /* Section card overlay style */
+      .section-card {
+        position: relative;
+        z-index: 10;
+      }
+      
+      /* Carousel styles */
+      .carousel-track {
+        display: flex;
+        gap: 2rem;
+      }
+      .carousel-item {
+        flex-shrink: 0;
+        width: 60vw;
+        max-width: 800px;
+      }
+      .carousel-item img {
+        filter: grayscale(100%);
+        transition: filter 0.5s ease;
+      }
+      .carousel-item:hover img {
+        filter: grayscale(0%);
+      }
+      
+      /* Grid pattern */
+      .grid-pattern {
+        background-image: 
+          linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+      
+      /* Navigation blend */
+      .nav-blend {
+        mix-blend-mode: difference;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      // Initialize Lenis smooth scroll with optimized settings
+      const lenis = new Lenis({
+        duration: 1.0,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 0.8,
+        smoothTouch: false,
+        touchMultiplier: 1.5,
+        infinite: false,
+      });
+      
+      // Use GSAP ticker for better sync (single RAF loop)
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+      
+      // Connect Lenis to ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+    </script>
+</body>
+</html>
