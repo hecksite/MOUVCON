@@ -62,7 +62,7 @@ export const Hero: React.FC = memo(() => {
             </span>
           </div>
 
-          <div className="text-[2.2rem] leading-[0.95] sm:text-[2.5rem] md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-semibold uppercase tracking-[0.01em] sm:tracking-[0.02em] md:tracking-[0.04em] flex flex-nowrap items-center justify-center w-full max-w-[100vw] px-2 text-white whitespace-nowrap overflow-hidden" id="hero-title">
+          <div className="text-[1.6rem] leading-[0.95] xs:text-[1.9rem] sm:text-[2.5rem] md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-semibold uppercase tracking-[0.01em] sm:tracking-[0.02em] md:tracking-[0.04em] flex flex-nowrap items-center justify-center w-full max-w-[100vw] px-1 sm:px-2 text-white whitespace-nowrap overflow-hidden" id="hero-title">
             <div className="flex items-center flex-shrink-0">
               <span className="letter">M</span>
               <span className="letter">O</span>
@@ -70,9 +70,9 @@ export const Hero: React.FC = memo(() => {
               <span className="letter">V</span>
               <span className="char-wrapper text-neutral-500 font-normal" id="part-ement">EMENT</span>
             </div>
-            <div id="spacer" className="w-1 sm:w-2 md:w-6 flex-shrink-0"></div>
+            <div id="spacer" className="w-0.5 sm:w-2 md:w-6 flex-shrink-0"></div>
             <span className="char-wrapper text-neutral-500 font-normal text-[0.6em] flex-shrink-0" id="part-ampersand">&</span>
-            <div id="spacer2" className="w-1 sm:w-2 md:w-6 flex-shrink-0"></div>
+            <div id="spacer2" className="w-0.5 sm:w-2 md:w-6 flex-shrink-0"></div>
             <div className="flex items-center flex-shrink-0">
               <span className="letter">C</span>
               <span className="letter">O</span>
