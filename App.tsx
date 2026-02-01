@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { WorkCarousel } from './components/WorkCarousel';
@@ -10,29 +10,6 @@ import BeamsBackground from './components/BeamsBackground';
 const App: React.FC = () => {
   const [impressumOpen, setImpressumOpen] = useState(false);
   const [datenschutzOpen, setDatenschutzOpen] = useState(false);
-  
-  useEffect(() => {
-    // Navbar scroll effect with hide/show
-    const ScrollTrigger = (window as any).ScrollTrigger;
-    const gsap = (window as any).gsap;
-    
-    if (gsap && ScrollTrigger) {
-      ScrollTrigger.create({
-        start: 'top -100',
-        onUpdate: (self: any) => {
-            if (self.direction === 1 && self.scroll() > 200) {
-                gsap.to('#navbar', { yPercent: -100, opacity: 0, duration: 0.3 });
-            } else {
-                gsap.to('#navbar', { 
-                    yPercent: 0, 
-                    opacity: 1, 
-                    duration: 0.3
-                });
-            }
-        }
-      });
-    }
-  }, []);
 
   return (
     <div className="antialiased selection:bg-neutral-900 selection:text-white min-h-screen text-neutral-900 font-sans bg-cream">

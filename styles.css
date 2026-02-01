@@ -54,57 +54,6 @@ body {
   white-space: nowrap;
 }
 
-/* Reveal animations */
-.reveal-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.reveal-up.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Card zoom effect */
-.card-zoom {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-zoom:hover {
-  transform: scale(1.02);
-}
-
-/* Section card overlay style */
-.section-card {
-  position: relative;
-  z-index: 10;
-}
-
-/* Carousel styles */
-.carousel-track {
-  display: flex;
-  gap: 2rem;
-}
-.carousel-item {
-  flex-shrink: 0;
-  width: 60vw;
-  max-width: 800px;
-}
-.carousel-item img {
-  filter: grayscale(100%);
-  transition: filter 0.5s ease;
-}
-.carousel-item:hover img {
-  filter: grayscale(0%);
-}
-
-/* Grid pattern */
-.grid-pattern {
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
 /* Navigation blend */
 .nav-blend {
   mix-blend-mode: difference;

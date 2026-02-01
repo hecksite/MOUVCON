@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, memo } from 'react';
+import React, { useRef, memo } from 'react';
 
 interface ValueCard {
   id: number;
@@ -36,121 +36,45 @@ const values: ValueCard[] = [
 
 export const WorkCarousel: React.FC = memo(() => {
   const sectionRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const gsap = (window as any).gsap;
-    const ScrollTrigger = (window as any).ScrollTrigger;
-    
-    if (!gsap || !ScrollTrigger || !sectionRef.current || !trackRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // Calculate scroll distance
-      const track = trackRef.current!;
-      const scrollDistance = track.scrollWidth - window.innerWidth + 100;
-
-      // Horizontal scroll animation
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: () => `+=${scrollDistance}`,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-        }
-      });
-
-      tl.to(track, {
-        x: -scrollDistance,
-        ease: 'none'
-      });
-
-      // Progress bar animation
-      if (progressRef.current) {
-        gsap.to(progressRef.current, {
-          scaleX: 1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: () => `+=${scrollDistance}`,
-            scrub: 1
-          }
-        });
-      }
-
-      // Reveal animations for header
-      gsap.from('.work-header', {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        }
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen overflow-hidden">
-      {/* Header */}
-      <div className="work-header absolute top-6 sm:top-8 md:top-12 left-4 sm:left-6 md:left-12 lg:left-20 z-10 pr-4">
-        <span className="text-[10px] sm:text-xs text-neutral-500 uppercase tracking-widest mb-2 block">
-          Unsere Werte
-        </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight">
-          Wofür wir stehen
-        </h2>
-      </div>
-
-      {/* Progress bar */}
-      <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-6 md:left-12 lg:left-20 right-4 sm:right-6 md:right-12 lg:right-20 z-10">
-        <div className="h-px bg-neutral-700 w-full">
-          <div ref={progressRef} className="h-full bg-white origin-left" style={{ transform: 'scaleX(0)' }} />
+    <section 
+      ref={sectionRef}
+      className="relative py-20 md:py-32"
+    >
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="mb-12 md:mb-20">
+          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-neutral-500 mb-4">Unsere Werte</p>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-white">
+            Was uns antreibt
+          </h2>
         </div>
-      </div>
 
-      {/* Carousel */}
-      <div className="h-screen flex items-center">
-        <div ref={trackRef} className="carousel-track pl-4 sm:pl-6 md:pl-12 lg:pl-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {values.map((value) => (
-            <div key={value.id} className="carousel-item group cursor-pointer">
-              {/* Image container with overlay text */}
+            <div key={value.id} className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-xl sm:rounded-2xl">
                 <img
                   src={value.image}
                   alt={value.title}
                   className="w-full h-[55vh] sm:h-[60vh] md:h-[70vh] object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
-                {/* Text content */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8">
                   <span className="text-[10px] sm:text-xs text-neutral-400 uppercase tracking-widest mb-2 block">
                     0{value.id}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-3 sm:mb-4 group-hover:text-neutral-200 transition-colors leading-tight">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-3 sm:mb-4 leading-tight">
                     {value.title}
                   </h3>
-                  <p className="text-sm sm:text-base md:text-lg text-neutral-300 leading-relaxed max-w-md">
+                  <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
                     {value.statement}
                   </p>
                 </div>
               </div>
             </div>
           ))}
-          
-          {/* Spacer at end */}
-          <div className="w-10 sm:w-20 flex-shrink-0" />
         </div>
       </div>
     </section>
@@ -158,3 +82,4 @@ export const WorkCarousel: React.FC = memo(() => {
 });
 
 WorkCarousel.displayName = 'WorkCarousel';
+
